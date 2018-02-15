@@ -1,6 +1,6 @@
 {
   "name": "react-render-watch",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Declaratively react to state transitions.",
   "main": "dist/react-render-watch.cjs.js",
   "module": "dist/react-render-watch.esm.js",
