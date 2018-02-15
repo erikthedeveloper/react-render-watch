@@ -13,7 +13,7 @@
     "prebuild": "rm dist/*",
     "start": "jest --watch",
     "test": "jest",
-    "prepublishOnly": "npm run test && npm run build"
+    "prepublish": "npm run test && npm run build"
   },
   "jest": {
     "testRegex": "[.]test[.]js",
@@ -42,9 +42,9 @@
     "rollup-plugin-uglify": "3.0.0"
   },
   "author": "Erik Aybar <erikthedeveloper@gmail.com>",
-  "homepage": "",
+  "homepage": "https://github.com/erikthedeveloper/react-render-watch",
   "license": "MIT",
-  "repository": "",
+  "repository": "https://github.com/erikthedeveloper/react-render-watch",
   "keywords": [
     "react-component"
   ]
