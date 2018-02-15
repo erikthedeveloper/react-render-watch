@@ -1,6 +1,9 @@
 # react-render-watch
 
-> Declaratively react to _state_ transitions.
+[![npm](https://img.shields.io/npm/v/react-render-watch.svg?style=flat-square)](https://www.npmjs.com/package/react-render-watch)
+[![gzip size](http://img.badgesize.io/https://unpkg.com/react-render-watch/dist/react-render-watch.umd.min.js?compression=gzip)](https://unpkg.com/react-render-watch/dist/react-render-watch.umd.min.js)
+
+Declaratively react to _state_ transitions.
 
 _*state referring to any combination of React props, state, context, etc..._
 
