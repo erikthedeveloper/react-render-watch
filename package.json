@@ -13,7 +13,8 @@
     "prebuild": "rm dist/*",
     "start": "jest --watch",
     "test": "jest",
-    "prepublish": "npm run test && npm run build"
+    "prepublish": "npm run test && npm run build",
+    "release": "npm publish && git push && git push --tags"
   },
   "jest": {
     "testRegex": "[.]test[.]js",
