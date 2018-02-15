@@ -1,0 +1,51 @@
+{
+  "name": "react-render-watch",
+  "version": "0.0.0",
+  "description": "Declaratively react to state transitions.",
+  "main": "dist/react-render-watch.cjs.js",
+  "module": "dist/react-render-watch.esm.js",
+  "browser": "dist/react-render-watch.umd.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "NODE_ENV=production rollup -c",
+    "prebuild": "rm dist/*",
+    "start": "jest --watch",
+    "test": "jest",
+    "prepublishOnly": "npm run test && npm run build"
+  },
+  "jest": {
+    "testRegex": "[.]test[.]js",
+    "setupTestFrameworkScriptFile": "./tests/setup-tests.js"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "prop-types": "15.x",
+    "react": "16.x"
+  },
+  "devDependencies": {
+    "babel-plugin-external-helpers": "6.22.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "jest": "22.3.0",
+    "prop-types": "15.x",
+    "react": "16.x",
+    "react-dom": "16.x",
+    "regenerator-runtime": "0.11.1",
+    "rollup": "0.56.0",
+    "rollup-plugin-babel": "3.0.3",
+    "rollup-plugin-commonjs": "8.3.0",
+    "rollup-plugin-node-resolve": "3.0.3",
+    "rollup-plugin-uglify": "3.0.0"
+  },
+  "author": "Erik Aybar <erikthedeveloper@gmail.com>",
+  "homepage": "",
+  "license": "MIT",
+  "repository": "",
+  "keywords": [
+    "react-component"
+  ]
+}
