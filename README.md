@@ -5,16 +5,17 @@
 
 Declaratively react to _state_ transitions.
 
-_*state referring to any combination of React props, state, context, etc..._
+_\*state referring to any combination of React props, state, context, etc..._
 
-## Why is this useful?
+## Usage
 
-1. Declaratively describe the actions you want to happen when certain _state_ transitions occur.
-2. Eliminate the need for class components when you just need componentDidUpdate.
-3. Eliminate the need to promote state to props to properly watch for changes.
-4. Enable ease of relocation for this type of logic.
+Install via `npm` or `yarn`.
 
-## Examples
+```
+npm install react-render-watch
+// or
+yarn add react-render-watch
+```
 
 ```jsx
 <Watch
@@ -27,6 +28,8 @@ _*state referring to any combination of React props, state, context, etc..._
 />
 ```
 
+Example: Trigger requests when request criteria changes.
+
 ```jsx
 // Request data for current page when the page changes (think pagination).
 <Watch
@@ -34,4 +37,39 @@ _*state referring to any combination of React props, state, context, etc..._
   test={(prevPage, page) => prevPage !== page}
   action={() => requestPageData(props.currentPage)}
 />
+```
+
+```jsx
+// Request data when search criteria changes (think product filtering).
+<Watch
+  value={makeRequestParams(this.props)}
+  test={(prevParams, params) => !_.isEqual(prevParams, params)}
+  action={(_, params) => requestDataWithParams(params)}
+/>
+```
+
+React to state changes without requiring a class component for lifecyle methods.
+
+```jsx
+import React from 'react';
+import {Watch} from 'react-render-watch';
+
+function SomeComponent({value, setValue, dangerFlag, setDangerFlag}) {
+  return (
+    <div>
+      <p>Raise the danger flag once input length reaches 5</p>
+      <input value={value} onChange={({target: {value}}) => setValue(value)} />
+      {dangerFlag && (
+        <button onClick={() => setDangerFlag(false)}>
+          Danger! (click to dismiss)
+        </button>
+      )}
+      <Watch
+        value={value}
+        test={(previous, {length}) => previous.length < 5 && length === 5}
+        action={() => setDangerFlag(true)}
+      />
+    </div>
+  );
+}
 ```
