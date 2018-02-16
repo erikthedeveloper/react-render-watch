@@ -9,12 +9,14 @@
     "dist"
   ],
   "scripts": {
+    "prebuild": "npm run clean",
     "build": "NODE_ENV=production rollup -c",
-    "prebuild": "rm dist/*",
+    "clean": "rm dist/*",
     "start": "jest --watch",
     "test": "jest",
-    "prepublish": "npm run test && npm run build",
-    "release": "npm publish && git push && git push --tags"
+    "prerelease": "npm run test && npm run build",
+    "release": "yarn version && npm publish",
+    "postrelease": "git push && git push --tags"
   },
   "jest": {
     "testRegex": "[.]test[.]js",
