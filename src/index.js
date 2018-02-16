@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 
 export class Watch extends React.Component {
   componentDidUpdate(prevProps) {
-    const {value, test, action} = this.props;
-    if (test(prevProps.value, value)) {
-      action(prevProps.value, value);
+    if (this.props.test(this.props.value, prevProps.value)) {
+      this.props.action(this.props.value, prevProps.value);
     }
   }
 

@@ -19,12 +19,15 @@ yarn add react-render-watch
 
 ```jsx
 <Watch
-  // value is the value to watch. Can be anything. A string, object, array... anything.
+  // The value to watch
+  // Can be anything (string, number, object, array, anything...)
   value={props.someValue}
-  // test receives previous and current value. Invoked in componentDidUpdate.
-  test={(prevValue, currentValue) => returnsBool(prevValue, currentValue)}
-  // action will be invoked anytime that test returns true.
-  action={(/* prevValue, currentValue */) => doSomething()}
+  // test receives current and previous value
+  // test is invoked in componentDidUpdate
+  test={(currentValue, prevValue) => returnsBool(currentValue, prevValue)}
+  // action will be invoked anytime that test returns true
+  // action also receives current and previous value
+  action={(/* currentValue, prevValue */) => doSomething()}
 />
 ```
 
@@ -34,8 +37,8 @@ Example: Trigger requests when request criteria changes.
 // Request data for current page when the page changes (think pagination).
 <Watch
   value={props.currentPage}
-  test={(prevPage, page) => prevPage !== page}
-  action={() => requestPageData(props.currentPage)}
+  test={(page, prevPage) => page !== prevPage}
+  action={page => props.requestPageData(page)}
 />
 ```
 
@@ -43,8 +46,8 @@ Example: Trigger requests when request criteria changes.
 // Request data when search criteria changes (think product filtering).
 <Watch
   value={makeRequestParams(this.props)}
-  test={(prevParams, params) => !_.isEqual(prevParams, params)}
-  action={(_, params) => requestDataWithParams(params)}
+  test={(params, prevParams) => !_.isEqual(params, prevParams)}
+  action={params => requestDataWithParams(params)}
 />
 ```
 
@@ -54,19 +57,19 @@ React to state changes without requiring a class component for lifecyle methods.
 import React from 'react';
 import {Watch} from 'react-render-watch';
 
-function SomeComponent({value, setValue, dangerFlag, setDangerFlag}) {
+function SomeComponent({text, setText, dangerFlag, setDangerFlag}) {
   return (
     <div>
       <p>Raise the danger flag once input length reaches 5</p>
-      <input value={value} onChange={({target: {value}}) => setValue(value)} />
+      <input value={text} onChange={({target: {value}}) => setText(value)} />
       {dangerFlag && (
         <button onClick={() => setDangerFlag(false)}>
           Danger! (click to dismiss)
         </button>
       )}
       <Watch
-        value={value}
-        test={(previous, {length}) => previous.length < 5 && length === 5}
+        value={text}
+        test={({length}, previous) => previous.length < 5 && length === 5}
         action={() => setDangerFlag(true)}
       />
     </div>
