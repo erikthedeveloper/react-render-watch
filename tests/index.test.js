@@ -5,13 +5,13 @@ import {Watch} from '../src/';
 describe('Component: Watch', () => {
   const minProps = {
     value: 'Some value',
-    test: jest.fn(),
+    test: jest.fn((prev, current) => prev !== current),
     action: jest.fn(),
   };
 
   beforeEach(() => {
-    minProps.test.mockReset();
-    minProps.action.mockReset();
+    minProps.test.mockClear();
+    minProps.action.mockClear();
   });
 
   it('renders nothing', () => {
@@ -25,29 +25,32 @@ describe('Component: Watch', () => {
     expect(wrapper.text()).toEqual('Hello there!');
   });
 
-  it('invokes test(prevValue, value) and NOT action when test fails', () => {
+  it('invokes test(prev, current) and NOT action when test fails', () => {
     const {test, action} = minProps;
-    test.mockReturnValue(false);
 
     const wrapper = mount(<Watch {...minProps} value="a" />);
 
     expect(test).not.toHaveBeenCalled();
 
-    wrapper.setProps({value: 'b'});
+    wrapper.setProps({value: 'a'});
     expect(test).toHaveBeenCalled();
-    expect(test.mock.calls[0]).toEqual(['a', 'b']);
+    expect(test.mock.calls[0]).toEqual(['a', 'a']);
 
     expect(action).not.toHaveBeenCalled();
   });
 
-  it('invokes action(prevValue, value) when test passes', () => {
+  it('invokes action(prev, current) when test passes', () => {
     const {test, action} = minProps;
-    test.mockReturnValue(true);
 
     const wrapper = mount(<Watch {...minProps} value="a" />);
     wrapper.setProps({value: 'b'});
 
     expect(action).toHaveBeenCalled();
     expect(action.mock.calls[0]).toEqual(['a', 'b']);
+
+    wrapper.setProps({value: 'b'});
+
+    expect(test.mock.calls.length).toEqual(2);
+    expect(action.mock.calls.length).toEqual(1);
   });
 });
