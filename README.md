@@ -7,14 +7,6 @@ Declaratively react to _state_ transitions.
 
 _\*state referring to any combination of React props, state, context, etc..._
 
-## API
-
-| prop   | description                                                          |
-| ------ | -------------------------------------------------------------------- |
-| value  | The value to watch                                                   |
-| test   | Function that returns boolean given `test(current, prev)`            |
-| action | Function to be invoked as `action(current, prev)` when `test` passes |
-
 ```jsx
 <Watch
   // The value to watch
@@ -28,6 +20,14 @@ _\*state referring to any combination of React props, state, context, etc..._
   action={(/* currentValue, prevValue */) => doSomething()}
 />
 ```
+
+## API
+
+| prop   | description                                                          |
+| ------ | -------------------------------------------------------------------- |
+| value  | The value to watch                                                   |
+| test   | Function that returns boolean given `test(current, prev)`            |
+| action | Function to be invoked as `action(current, prev)` when `test` passes |
 
 ## Installation
 
