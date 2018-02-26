@@ -7,15 +7,13 @@ Declaratively react to _state_ transitions.
 
 _\*state referring to any combination of React props, state, context, etc..._
 
-## Usage
+## API
 
-Install via `npm` or `yarn`.
-
-```
-npm install react-render-watch
-// or
-yarn add react-render-watch
-```
+| prop   | description                                                          |
+| ------ | -------------------------------------------------------------------- |
+| value  | The value to watch                                                   |
+| test   | Function that returns boolean given `test(current, prev)`            |
+| action | Function to be invoked as `action(current, prev)` when `test` passes |
 
 ```jsx
 <Watch
@@ -31,10 +29,37 @@ yarn add react-render-watch
 />
 ```
 
-Example: Trigger requests when request criteria changes.
+## Installation
+
+Install via `yarn` or `npm`.
+
+```
+yarn add react-render-watch
+// or
+npm install --save react-render-watch
+```
+
+## Usage
+
+### Importing `Watch`
+
+`react-render-watch` has a single, named export:
 
 ```jsx
-// Request data for current page when the page changes (think pagination).
+// ES6 Modules
+import {Watch} from 'react-render-watch';
+// CommonJS
+const Watch = require('react-render-watch').Watch;
+
+// ...
+// Use such as <Watch {...watchProps} />
+```
+
+### Examples
+
+**Request new items when page changes (think pagination).**
+
+```jsx
 <Watch
   value={props.currentPage}
   test={(page, prevPage) => page !== prevPage}
@@ -42,8 +67,9 @@ Example: Trigger requests when request criteria changes.
 />
 ```
 
+**Request data when search criteria changes (think advanced product filtering).**
+
 ```jsx
-// Request data when search criteria changes (think product filtering).
 <Watch
   value={makeRequestParams(this.props)}
   test={(params, prevParams) => !_.isEqual(params, prevParams)}
@@ -51,12 +77,9 @@ Example: Trigger requests when request criteria changes.
 />
 ```
 
-React to state changes without requiring a class component for lifecyle methods.
+**React to state changes without requiring a class component for lifecyle methods.**
 
 ```jsx
-import React from 'react';
-import {Watch} from 'react-render-watch';
-
 function SomeComponent({text, setText, dangerFlag, setDangerFlag}) {
   return (
     <div>
