@@ -12,8 +12,8 @@
     "prebuild": "npm run clean",
     "build": "NODE_ENV=production rollup -c",
     "clean": "rm dist/*",
-    "start": "jest --watch",
     "test": "jest",
+    "test:watch": "jest --watch",
     "prerelease": "npm run test && npm run build",
     "release": "yarn version && npm publish",
     "postrelease": "git push && git push --tags"
