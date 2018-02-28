@@ -11,7 +11,7 @@
   "scripts": {
     "prebuild": "npm run clean",
     "build": "NODE_ENV=production rollup -c",
-    "clean": "rm dist/*",
+    "clean": "rimraf dist/*",
     "test": "jest",
     "test:watch": "jest --watch",
     "prerelease": "npm run test && npm run build",
@@ -38,6 +38,7 @@
     "react": "16.x",
     "react-dom": "16.x",
     "regenerator-runtime": "0.11.1",
+    "rimraf": "^2.6.2",
     "rollup": "0.56.0",
     "rollup-plugin-babel": "3.0.3",
     "rollup-plugin-commonjs": "8.3.0",
