@@ -22,14 +22,13 @@
     "testRegex": "[.]test[.]js",
     "setupTestFrameworkScriptFile": "./tests/setup-tests.js"
   },
-  "dependencies": {},
   "peerDependencies": {
     "prop-types": "15.x",
     "react": "16.x"
   },
   "devDependencies": {
     "babel-plugin-external-helpers": "6.22.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.13",
     "babel-preset-env": "1.6.1",
     "babel-preset-react": "6.24.1",
     "enzyme": "3.3.0",
@@ -39,7 +38,7 @@
     "react": "16.x",
     "react-dom": "16.x",
     "regenerator-runtime": "0.11.1",
-    "rimraf": "^2.6.2",
+    "rimraf": "2.6.2",
     "rollup": "0.56.0",
     "rollup-plugin-babel": "3.0.3",
     "rollup-plugin-commonjs": "8.3.0",
