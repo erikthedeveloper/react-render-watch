@@ -4,6 +4,8 @@ import babel from 'rollup-plugin-babel';
 import uglify from 'rollup-plugin-uglify';
 import pkg from './package.json';
 
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
 function minify(config) {
   return Object.assign({}, config, {
     output: Object.assign({}, config.output, {
@@ -48,4 +50,6 @@ const esConfig = Object.assign({}, baseConfig, {
   output: {file: pkg.module, format: 'es'},
 });
 
-export default [umdConfig, minify(umdConfig), cjsConfig, esConfig];
+export default (NODE_ENV === 'production'
+  ? [minify(umdConfig)]
+  : [umdConfig, cjsConfig, esConfig]);
