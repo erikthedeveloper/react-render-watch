@@ -1,22 +1,22 @@
 {
-  "presets": [["env", {"modules": false}], "react"],
-  "plugins": [
-    "external-helpers",
-    [
-      "transform-react-remove-prop-types",
-      { "mode": "wrap" }
-    ]
-  ],
   "env": {
+    "development": {
+      "presets": [["env", {"modules": false}], "react"],
+      "plugins": [
+        "external-helpers",
+        ["transform-react-remove-prop-types", {"mode": "wrap"}]
+      ]
+    },
     "test": {
       "presets": [["env"], "react"]
     },
     "production": {
+      "presets": [["env", {"modules": false}], "react"],
       "plugins": [
         "external-helpers",
         [
           "transform-react-remove-prop-types",
-          { "mode": "remove", "removeImport": true }
+          {"mode": "remove", "removeImport": true}
         ]
       ]
     }
