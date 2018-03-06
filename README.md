@@ -10,14 +10,11 @@ _\*state referring to any combination of React props, state, context, etc..._
 ```jsx
 <Watch
   // The value to watch
-  // Can be anything (string, number, object, array, anything...)
   value={props.someValue}
   // test receives current and previous value
-  // test is invoked in componentDidUpdate
-  test={(currentValue, prevValue) => returnsBool(currentValue, prevValue)}
+  test={(current, prev) => returnsBool(current, prev)}
   // action will be invoked anytime that test returns true
-  // action also receives current and previous value
-  action={(/* currentValue, prevValue */) => doSomething()}
+  action={(/* current, prev */) => doSomething()}
 />
 ```
 
