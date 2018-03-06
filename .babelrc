@@ -1,11 +1,24 @@
 {
-  "presets": [["env", {"modules": false}], "react"],
   "env": {
+    "development": {
+      "presets": [["env", {"modules": false}], "react"],
+      "plugins": [
+        "external-helpers",
+        ["transform-react-remove-prop-types", {"mode": "wrap"}]
+      ]
+    },
     "test": {
       "presets": [["env"], "react"]
     },
     "production": {
-      "plugins": ["external-helpers"]
+      "presets": [["env", {"modules": false}], "react"],
+      "plugins": [
+        "external-helpers",
+        [
+          "transform-react-remove-prop-types",
+          {"mode": "remove", "removeImport": true}
+        ]
+      ]
     }
   }
 }
